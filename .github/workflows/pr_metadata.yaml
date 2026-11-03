@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo ${{github.actor}} > actor.txt
+          printf ’PR_ACTOR=%s\n’ ”$GITHUB_ACTOR” > actor.txt
       - uses: actions/upload-artifact@v7.0.2
         with:
           name: pr-metadata
