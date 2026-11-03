@@ -1,0 +1,19 @@
+name: consumer
+on:
+  workflow_run:
+    workflows: [PR metadata]
+    types: [completed]
+permissions: {actions: read}
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    env:
+      FLAG: ${{ secrets.FLAG }}
+    steps:
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: pr-metadata
+          path: pr-artifact
+          run-id: ${{ github.event.workflow_run.id }}
+      - run: echo PR_ACTOR=$(cat pr-artifact/metadata.json | jq '.actor') >> "$GITHUB_ENV"
+      - run: echo "### PR metadata\nPR made by $PR_ACTOR" >> "$GITHUB_STEP_SUMMARY"
