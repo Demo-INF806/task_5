@@ -13,5 +13,5 @@ jobs:
           path: pr-artifact
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
-      - run: echo PR_ACTOR=$(cat pr-artifact/actor.txt) >> "$GITHUB_ENV"
+      - run: cat pr-artifact/actor.txt >> "$GITHUB_ENV"
       - run: echo -e "### PR metadata\nPR made by $PR_ACTOR" >> "$GITHUB_STEP_SUMMARY"
