@@ -5,7 +5,8 @@ jobs:
   metadata:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Générer les métadonnées
+        run: |
           printf 'INF806_TEST=artefact_modifie\n' >> actor.txt
       - uses: actions/upload-artifact@v7.0.2
         with:
